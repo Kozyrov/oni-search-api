@@ -17,7 +17,7 @@ module.exports = async function (context, req) {
         }
 
         // Add or change code here
-        const message = `${name} likes ${sport}`;
+        const message = `${name} plays ${sport}`;
 
         // Construct response
         const responseJSON = {
