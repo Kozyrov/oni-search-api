@@ -1,2 +1,2 @@
-# oni-search
-search app for onikasu
+# oni-search-api
+search service for onikasu
