@@ -1,4 +1,4 @@
-const titleSearch = async (context, req) => {
+module.exports = async function (context, req) {
 
     try {
         context.log('oni-search processed title search.');
@@ -38,9 +38,3 @@ const titleSearch = async (context, req) => {
         };
     }
 }
-
-const oniSearch = {
-    title: titleSearch
-}
-
-module.exports = oniSearch;

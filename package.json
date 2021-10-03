@@ -2,9 +2,7 @@
   "name": "oni-search",
   "version": "1.0.0",
   "description": "",
-  "jest": {
-
-  },
+  "jest": {},
   "scripts": {
     "start": "func start",
     "test": "jest --collectCoverage"
