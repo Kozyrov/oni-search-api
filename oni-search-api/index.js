@@ -1,14 +1,13 @@
-module.exports = async function (context, req) {
+const titleSearch = async (context, req) => {
 
     try {
-        context.log('JavaScript HTTP trigger function processed a request.');
+        context.log('oni-search processed title search.');
 
         // Read incoming data
-        const name = (req.query.name || (req.body && req.body.name));
-        const sport = (req.query.sport || (req.body && req.body.sport));
+        const value = (req.query.value || (req.body && req.body.value));
 
         // fail if incoming data is required
-        if (!name || !sport) {
+        if (!value) {
 
             context.res = {
                 status: 400
@@ -17,12 +16,11 @@ module.exports = async function (context, req) {
         }
 
         // Add or change code here
-        const message = `${name} plays ${sport}`;
+        const message = `search by: ${value}`;
 
         // Construct response
         const responseJSON = {
-            "name": name,
-            "sport": sport,
+            "value": value,
             "message": message,
             "success": true
         }
@@ -33,8 +31,16 @@ module.exports = async function (context, req) {
             contentType: 'application/json'
         };
     } catch(err) {
+        //testable without async
         context.res = {
-            status: 500
+            status: 500,
+            err: err.message
         };
     }
 }
+
+const oniSearch = {
+    title: titleSearch
+}
+
+module.exports = oniSearch;
