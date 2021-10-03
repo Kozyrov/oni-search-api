@@ -6,7 +6,7 @@ test('if title search receives invalid user input then it should return 400 stat
         query: { value: null }
     };
 
-    await oniSearch.title(context, stubRequest);
+    await oniSearch(context, stubRequest);
 
     expect(context.res.status).toEqual(400);
 });
@@ -16,7 +16,7 @@ test('if title search receives valid user input then it should return a response
         query: { value: "anyvalue" }
     };
 
-    await oniSearch.title(context, stubRequest);
+    await oniSearch(context, stubRequest);
 
     expect(context.res.body.success).toBe(true);
 });
