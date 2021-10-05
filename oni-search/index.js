@@ -1,5 +1,8 @@
-module.exports = async function (context, req) {
+const oniAuth = require("../services/oni-auth");
+require('dotenv').config();
 
+module.exports = async (context, req) => {
+    const _oniAuth = new oniAuth();
     try {
         context.log('oni-search processed search.');
 
@@ -13,17 +16,19 @@ module.exports = async function (context, req) {
                 status: 400
             };
             return;
-        }
+        };
 
         // Add or change code here
-        const message = `search by: ${value}`;
+        _oniAuth.requestMALAuthorization();       
 
         // Construct response
         const responseJSON = {
             "value": value,
             "message": message,
-            "success": true
-        }
+            "success": true,
+            "verifier": _oniAuth.code_verifier,
+            "challenge": _oniAuth.code_challenge
+        };
 
         context.res = {
             // status: 200, /* Defaults to 200 */
@@ -36,5 +41,5 @@ module.exports = async function (context, req) {
             status: 500,
             err: err.message
         };
-    }
-}
+    };
+};
