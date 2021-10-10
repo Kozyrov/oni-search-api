@@ -30,16 +30,15 @@ module.exports = class oniAuth {
 
     requestMALAuthorization = async () => {
         try {
-            await axios({
-                "method": "get",
-                "url": env.MAL_OAUTH_ENDPOINT,
+            await fetch(env.MAL_OAUTH_ENDPOINT, {
+                "method": "POST",
                 "params": { 
                     "reponse_type": this.response_type,
                     "client_id": this.client_id,
                     "code_challenge": this.code_challenge
                 },
                 "data": {
-                    "grant_type":"client_credentials"
+                    "grant_type": client_credentials
                 }
             }).then((res) => {
                 console.log(`response recieved: ${res}`);
