@@ -1,27 +1,23 @@
-const oniAuth = require("../services/oni-auth");
-require('dotenv').config();
+const axios = require("axios");
+
+const conductSearch = async (term) => {
+    let response;
+    try {
+        await axios.get("https://kitsu.io/api/edge/anime?", {
+            "params": {
+                "filter[text]": encodeURIComponent(term)
+            }
+        }).then((res) => {
+            response = res.data;
+        });
+    } catch (err) {
+        throw new Error(`search failed: ${err}`);
+    }
+
+    return response;
+}
 
 module.exports = async (context, req) => {
-    const dispatchResponse = (data) => {
-        // Construct response
-        const responseJSON = {
-            "value": value,
-            "success": true,
-        };
-
-        context.res = {
-            // status: 200, /* Defaults to 200 */
-            body: responseJSON,
-            contentType: 'application/json'
-        };
-    }
-
-    const conductSearch = async (searchTerm) => {
-        fetch(`${process.env.KITSU_API_ROOT/SEARCH_ENDPOINT}=${searchTerm}`, {
-            "mode":
-        });
-    }
-    
     try {
         context.log('oni-search processed search.');
 
@@ -32,13 +28,25 @@ module.exports = async (context, req) => {
         if (!value) {
 
             context.res = {
-                status: 400
+                status: 400,
+                message: "include valid search term"
             };
             return;
         };
 
         // Add or change code here
-        await 
+        const result = await conductSearch(value);
+
+        const responseJSON = {
+            "value": result,
+            "success": true,
+        };
+
+        context.res = {
+            // status: 200, /* Defaults to 200 */
+            body: responseJSON,
+            contentType: 'application/json'
+        };
 
     } catch(err) {
         //testable without async
