@@ -1,5 +1,5 @@
-const oniSearch = require('./index');
-const context = require('../testing/defaultContext');
+const oniSearch = require('./index.js');
+const context = require('../testing/defaultContext.js');
 
 test('if title search receives invalid user input then it should return 400 status', async () => {
     const stubRequest = {

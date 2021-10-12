@@ -1,6 +1,6 @@
 const axios = require("axios");
 
-const conductSearch = async (term) => {
+const getAnimeByTitle = async (term) => {
     let response;
     try {
         await axios.get("https://kitsu.io/api/edge/anime?", {
@@ -35,7 +35,7 @@ module.exports = async (context, req) => {
         };
 
         // Add or change code here
-        const result = await conductSearch(value);
+        const result = await getAnimeByTitle(value);
 
         const responseJSON = {
             "value": result,
