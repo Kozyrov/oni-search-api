@@ -19,7 +19,7 @@ const conductSearch = async (term) => {
 
 module.exports = async (context, req) => {
     try {
-        context.log('oni-search processed search.');
+        context.log("oni-search processed search.");
 
         // Read incoming data
         const value = (req.query.value || (req.body && req.body.value));
@@ -39,8 +39,9 @@ module.exports = async (context, req) => {
 
         context.res = {
             // status: 200, /* Defaults to 200 */
+            status: 200,
             body: result,
-            contentType: 'application/json'
+            contentType: "application/json"
         };
 
     } catch(err) {

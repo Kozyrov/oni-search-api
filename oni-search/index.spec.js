@@ -1,7 +1,7 @@
-const oniSearch = require('./index');
-const context = require('../testing/defaultContext');
+const oniSearch = require("./index");
+const context = require("../testing/defaultContext");
 
-test('if title search receives invalid user input then it should return 400 status', async () => {
+test("if title search receives invalid user input then it should return 400 status", async () => {
     const stubRequest = {
         query: { value: null }
     };
@@ -11,12 +11,12 @@ test('if title search receives invalid user input then it should return 400 stat
     expect(context.res.status).toEqual(400);
 });
 
-test('if title search receives valid user input then it should return a response containing "success"', async () => {
+test("if title search receives valid user input then it should return a 200 status code", async () => {
     const stubRequest = {
         query: { value: "anyvalue" }
     };
 
     await oniSearch(context, stubRequest);
 
-    expect(context.res.body.success).toBe(true);
+    expect(context.res.status).toBe(200);
 });
