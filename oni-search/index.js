@@ -37,14 +37,9 @@ module.exports = async (context, req) => {
         // Add or change code here
         const result = await conductSearch(value);
 
-        const responseJSON = {
-            "value": result,
-            "success": true,
-        };
-
         context.res = {
             // status: 200, /* Defaults to 200 */
-            body: responseJSON,
+            body: result,
             contentType: 'application/json'
         };
 
